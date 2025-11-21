@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ADHDWorkspace.Views.SettingsPage"
+             Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <Label Text="⚙️ Settings"
+                   Style="{StaticResource HeaderLarge}" />
+
+            <VerticalStackLayout Spacing="10">
+                <!-- General -->
+                <Button x:Name="GeneralHeaderButton"
+                        Text="General"
+                        HorizontalOptions="Fill"
+                        Clicked="OnToggleSection"
+                        CommandParameter="GeneralSection" />
+                <Border x:Name="GeneralSection"
+                        Style="{StaticResource CardBorder}">
+                    <VerticalStackLayout Spacing="15">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Portable Mode"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Switch x:Name="PortableModeSwitch"
+                                    OnColor="{StaticResource AccentGreen}"
+                                    Toggled="OnPortableModeToggled" />
+                        </HorizontalStackLayout>
+
+                        <Label Text="Log Level"
+                               Style="{StaticResource BodyText}" />
+                        <Picker x:Name="LogLevelPicker">
+                            <Picker.Items>
+                                <x:String>Debug</x:String>
+                                <x:String>Information</x:String>
+                                <x:String>Warning</x:String>
+                                <x:String>Error</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Pomodoro -->
+                <Button x:Name="PomodoroHeaderButton"
+                        Text="Pomodoro Timer"
+                        HorizontalOptions="Fill"
+                        Clicked="OnToggleSection"
+                        CommandParameter="PomodoroSection" />
+                <Border x:Name="PomodoroSection"
+                        Style="{StaticResource CardBorder}"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="15">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Focus Duration (minutes)"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Entry x:Name="FocusMinutesEntry"
+                                   Keyboard="Numeric"
+                                   WidthRequest="80" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Short Break (minutes)"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Entry x:Name="ShortBreakEntry"
+                                   Keyboard="Numeric"
+                                   WidthRequest="80" />
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="Long Break (minutes)"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Entry x:Name="LongBreakEntry"
+                                   Keyboard="Numeric"
+                                   WidthRequest="80" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Paths -->
+                <Button x:Name="PathsHeaderButton"
+                        Text="📁 Paths"
+                        HorizontalOptions="Fill"
+                        Clicked="OnToggleSection"
+                        CommandParameter="PathsSection" />
+                <Border x:Name="PathsSection"
+                        Style="{StaticResource CardBorder}"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="15">
+                        <Label Text="Configure paths for notes and templates"
+                               Style="{StaticResource CaptionText}"
+                               Margin="0,0,0,10" />
+                        
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Inbox File"
+                                   Style="{StaticResource BodyText}" />
+                            <Entry x:Name="InboxPathEntry"
+                                   Placeholder="C:\path\to\Inbox.md" />
+                        </VerticalStackLayout>
+                        
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Daily Notes Folder"
+                                   Style="{StaticResource BodyText}" />
+                            <Entry x:Name="DailyNotesPathEntry"
+                                   Placeholder="C:\path\to\Daily" />
+                        </VerticalStackLayout>
+                        
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="Templates Folder"
+                                   Style="{StaticResource BodyText}" />
+                            <Entry x:Name="TemplatesPathEntry"
+                                   Placeholder="C:\path\to\Templates" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Hotkeys -->
+                <Button x:Name="HotkeysHeaderButton"
+                        Text="Hotkeys"
+                        HorizontalOptions="Fill"
+                        Clicked="OnToggleSection"
+                        CommandParameter="HotkeysSection" />
+                <Border x:Name="HotkeysSection"
+                        Style="{StaticResource CardBorder}"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="15">
+                        <Grid ColumnDefinitions="Auto,*"
+                              RowDefinitions="Auto,Auto,Auto,Auto"
+                              RowSpacing="10"
+                              ColumnSpacing="15">
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Text="Quick Capture"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Row="0" Grid.Column="1"
+                                   x:Name="QuickCaptureHotkeyEntry" />
+
+                            <Label Grid.Row="1" Grid.Column="0"
+                                   Text="Start Pomodoro"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Row="1" Grid.Column="1"
+                                   x:Name="StartPomodoroHotkeyEntry" />
+
+                            <Label Grid.Row="2" Grid.Column="0"
+                                   Text="Restore Context"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Row="2" Grid.Column="1"
+                                   x:Name="RestoreContextHotkeyEntry" />
+
+                            <Label Grid.Row="3" Grid.Column="0"
+                                   Text="Show Settings"
+                                   Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Row="3" Grid.Column="1"
+                                   x:Name="ShowSettingsHotkeyEntry" />
+                        </Grid>
+
+                        <Label Text="Format: Win+Shift+N, Ctrl+Alt+F, etc."
+                               Style="{StaticResource CaptionText}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Buttons -->
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="End">
+                <Button Text="Cancel"
+                        WidthRequest="120"
+                        Clicked="OnCancelClicked" />
+
+                <Button Text="Save"
+                        Style="{StaticResource PrimaryButton}"
+                        WidthRequest="140"
+                        Clicked="OnSaveClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

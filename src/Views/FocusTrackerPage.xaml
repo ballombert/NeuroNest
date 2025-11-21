@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ADHDWorkspace.Views.FocusTrackerPage"
+             Title="Focus Tracker">
+
+    <Grid RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+         <Label Grid.Row="0"
+             Text="🎯 Focus Tracker"
+             Style="{StaticResource HeaderLarge}" />
+
+        <!-- Add New Task -->
+        <Border Grid.Row="1"
+            Style="{StaticResource CardBorder}">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Entry Grid.Column="0"
+                       x:Name="TaskEntry"
+                       Placeholder="What are you working on?"
+                       MaxLength="100" />
+                
+                <Button Grid.Column="1"
+                        Text="Add"
+                Style="{StaticResource PrimaryButton}"
+                WidthRequest="110"
+                        Clicked="OnAddTaskClicked" />
+            </Grid>
+        </Border>
+
+        <!-- Filters -->
+        <HorizontalStackLayout Grid.Row="2"
+                       x:Name="FilterBar"
+                       Spacing="10">
+            <Button x:Name="FilterAllButton"
+                Text="All"
+                WidthRequest="90"
+                Clicked="OnFilterButtonClicked"
+                CommandParameter="All" />
+            <Button x:Name="FilterActiveButton"
+                Text="Active"
+                WidthRequest="90"
+                Clicked="OnFilterButtonClicked"
+                CommandParameter="Active" />
+            <Button x:Name="FilterCompletedButton"
+                Text="Completed"
+                WidthRequest="110"
+                Clicked="OnFilterButtonClicked"
+                CommandParameter="Completed" />
+        </HorizontalStackLayout>
+
+        <!-- Active Tasks List -->
+        <ScrollView Grid.Row="3">
+            <VerticalStackLayout x:Name="ActiveTasksContainer" Spacing="10">
+                <!-- Tasks will be added dynamically -->
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Buttons -->
+        <Button Grid.Row="4"
+            Text="Close"
+                Clicked="OnCloseClicked" />
+    </Grid>
+</ContentPage>

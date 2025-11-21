@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ADHDWorkspace.Views.RestoreContextPage"
+             Title="Restore Context"
+             BackgroundColor="{StaticResource BackgroundDark}">
+
+    <Grid Padding="20" RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Label Grid.Row="0"
+               Text="📋 Restore Workspace Context"
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="White"
+               Margin="0,0,0,10" />
+
+        <!-- Snapshots List -->
+        <CollectionView x:Name="SnapshotsCollection"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSnapshotSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10"
+                          BackgroundColor="{StaticResource SurfaceDark}"
+                          Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0"
+                               Text="{Binding Name}"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="White" />
+
+                        <Label Grid.Row="1"
+                               FontSize="12"
+                               TextColor="{StaticResource SecondaryText}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Timestamp, StringFormat='{0:yyyy-MM-dd HH:mm}'}" />
+                                    <Span Text=" • " />
+                                    <Span Text="{Binding VSCodeFiles.Count, StringFormat='{0} files'}" />
+                                    <Span Text=" • " />
+                                    <Span Text="{Binding ActiveWindows.Count, StringFormat='{0} windows'}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator x:Name="LoadingIndicator"
+                           Grid.Row="1"
+                           IsRunning="True"
+                           Color="{StaticResource AccentBlue}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+
+        <!-- Buttons -->
+        <HorizontalStackLayout Grid.Row="2"
+                               Spacing="10"
+                               HorizontalOptions="End">
+            <Button Text="Close"
+                    BackgroundColor="{StaticResource SurfaceDark}"
+                    TextColor="{StaticResource SecondaryText}"
+                    WidthRequest="100"
+                    Clicked="OnCloseClicked" />
+            
+            <Button x:Name="RestoreButton"
+                    Text="Restore"
+                    BackgroundColor="{StaticResource AccentBlue}"
+                    TextColor="White"
+                    WidthRequest="100"
+                    IsEnabled="False"
+                    Clicked="OnRestoreClicked" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

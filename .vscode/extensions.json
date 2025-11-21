@@ -1,0 +1,35 @@
+{
+    "recommendations": [
+        // C# / .NET Development
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.vscodeintellicode-csharp",
+        "kreativ-software.csharpextensions",
+        "jongrant.csharpsortusings",
+        // Python Development
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        // Build & Task Runners
+        "cake-build.cake-vscode",
+        "ms-vscode.powershell",
+        // Git & Version Control
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        // Markdown & Documentation
+        "yzhang.markdown-all-in-one",
+        "DavidAnson.vscode-markdownlint",
+        // Code Quality
+        "SonarSource.sonarlint-vscode",
+        "usernamehw.errorlens",
+        "streetsidesoftware.code-spell-checker",
+        // Productivity
+        "Gruntfuggly.todo-tree",
+        "wayou.vscode-todo-highlight",
+        "aaron-bond.better-comments",
+        // XML/XAML
+        "redhat.vscode-xml",
+        "DotJoshJohnson.xml"
+    ]
+}
